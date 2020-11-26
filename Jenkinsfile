@@ -10,9 +10,6 @@ pipeline{
        Name = readMavenPom().getName()
        GroupId = readMavenPom().getGroupId()
     }
-
-
-
     stages {
         // Specify various stage with in stages
 
@@ -31,9 +28,13 @@ pipeline{
             }
         }
 
-        // Stage3 : Publish the artefacts to Nexus
+        // Stage3 : Publish the artifacts to Nexus
         stage ('Publish to Nexus'){
             steps {
+                script {
+
+                def NexusRepo = Version.endsWith("SNAPSHOT") ? "VinaysDevOpsLab-SNAPSHOT" : "VinaysDevOpsLab-RELEASE"
+
                 nexusArtifactUploader artifacts: 
                 [[artifactId: "${ArtifactId}", 
                 classifier: '', 
@@ -44,8 +45,9 @@ pipeline{
                 nexusUrl: '172.20.10.140:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: 'VinaysDevOpsLab-SNAPSHOT', 
+                repository: "${NexusRepo}", 
                 version: "${Version}"
+             }
             }
         }
 

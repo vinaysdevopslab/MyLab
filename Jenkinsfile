@@ -70,7 +70,7 @@ pipeline{
                         configName: 'ansible_controller', 
                         transfers: 
                             [sshTransfer(
-                                execCommand: 'ansible-playbook /opt/playbooks/deploywar-to-tomcat.yaml -i /opt/playbooks/hosts',
+                                execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy.yaml -i /opt/playbooks/hosts',
                                 execTimeout: 120000)],
                     usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 

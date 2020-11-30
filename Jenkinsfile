@@ -65,7 +65,14 @@ pipeline{
         stage ('Deploy'){
             steps {
                 echo "Deploy ...."
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ansible_controller', transfers: [execCommand: 'ansible-playbook /opt/playbooks/deploywar-to-tomcat.yaml -i /opt/playbooks/hosts',execTimeout: 120000],usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                sshPublisher(publishers: 
+                    [sshPublisherDesc(
+                        configName: 'ansible_controller', 
+                        transfers: 
+                            [sshTransfer(
+                                execCommand: 'ansible-playbook /opt/playbooks/deploywar-to-tomcat.yaml -i /opt/playbooks/hosts',
+                                execTimeout: 120000)],
+                    usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 
             }
         }

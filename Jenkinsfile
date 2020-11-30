@@ -64,7 +64,7 @@ pipeline{
         // Stage 5 : Deploying
         stage ('Deploy'){
             steps {
-                echo 'deploying.....'
+                ansiblePlaybook become: true, credentialsId: '52011009-2875-49f1-b9f7-9b2168e9b382', installation: 'Ansible', inventory: '/opt/playbooks/hosts', limit: '172.20.10.107', playbook: '/opt/playbooks/downloadanddeploy.yaml'
 
             }
         }

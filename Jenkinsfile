@@ -26,7 +26,7 @@ pipeline{
         // Stage3 : Publish the source code to Sonarqube
 
 
-        stage ('Publish to SnarqubeSonarqube and SonarQube analysis'){
+        stage ('Publish the sourcecode to sonarqube and SonarQube analysis'){
             steps {
                 echo ' publishing the source code to sonarqube......'
                 withSonarQubeEnv('sonarqube') { // You can override the credential to be used

@@ -5,14 +5,15 @@ pipeline{
         maven 'maven'
     }
     Stages {
-        // Specify various stage within stages
+       // Specify various stage within stages
 
        // Stage 1. build
-       stage ('Build'){
+        stage ('Build'){
           steps {
               sh 'mvn clean stall package'
           }  
         }
+
         // stage 2 : Testing
         stage ('Test'){
             steps {
@@ -20,9 +21,10 @@ pipeline{
             }
         }
         // Stage 3 : Deploying
-        Stage('Deploy'){
+        stage('Deploy'){
             steps {
                 echo 'deploying-----------'
             }
         }
-   }     
+    }     
+}

@@ -1,41 +1,28 @@
 pipeline{
-    //Directives
+//Directives
     agent any
-    tools {
+    tools{
         maven 'maven'
     }
+    Stages {
+        // Specify various stage within stages
 
-    stages {
-        // Specify various stage with in stages
-
-        // stage 1. Build
-        stage ('Build'){
-            steps {
-                sh 'mvn clean install package'
-            }
+       // Stage 1. build
+       stage ('Build'){
+          steps {
+              sh 'mvn clean stall package'
+          }  
         }
-
-        // Stage2 : Testing
+        // stage 2 : Testing
         stage ('Test'){
             steps {
-                echo ' testing......'
-
+                echo 'testing...........'
             }
         }
-
-        // Stage3 : Publish the source code to Sonarqube
-        stage ('Sonarqube Analysis'){
+        // Stage 3 : Deploying
+        Stage('Deploy'){
             steps {
-                echo ' Source code published to Sonarqube for SCA......'
-                withSonarQubeEnv('sonarqube'){ // You can override the credential to be used
-                     sh 'mvn sonar:sonar'
-                }
-
+                echo 'deploying-----------'
             }
         }
-
-        
-        
-    }
-
-}
+   }     

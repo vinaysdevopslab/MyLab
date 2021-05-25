@@ -4,7 +4,7 @@ pipeline{
     tools{
         maven 'maven'
     }
-    Stages {
+    stages {
        // Specify various stage within stages
 
        // Stage 1. build

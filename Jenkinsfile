@@ -26,7 +26,7 @@ pipeline{
             }
         }
         
-        // Stage 3 :Publish artifact to Nexus
+        // Stage 3 :Publish artifact to Nexus 
         stage ('Publish to Nexus'){
             steps {
                 script {     
@@ -45,7 +45,7 @@ pipeline{
                 repository: "${NexusRepo}", 
                 version: "${Version}"
                 
-             }   
+              }   
             }
         }
         //Stage 4 : Print some information

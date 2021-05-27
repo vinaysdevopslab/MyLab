@@ -41,6 +41,7 @@ pipeline{
                 credentialsId: 'f22658a8-67b6-4f7d-b03d-38e13456b8fd', 
                 groupId: "${GroupId}", 
                 nexusUrl: '172.20.10.90:8081', 
+ 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
                 repository: "${NexusRepo}", 
@@ -54,6 +55,7 @@ pipeline{
                 steps {
                     echo "Artifact ID is '${ArtifactId}'"
                     echo "Version is '${Version}'"
+ 
                     echo "GroupID is '${GroupId}'"
                     echo "Name is '${Name}'"
                 }

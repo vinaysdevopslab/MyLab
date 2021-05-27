@@ -68,7 +68,7 @@
         </div>
         <div class="col-md-4">
             <h2>Nexus</h2>
-            <p>I have used Nexus3 as my maven repository manager. Jenkins will publish the artifacts to Nexus after succesful build </p>
+            <!-- <p>I have used Nexus3 as my maven repository manager. Jenkins will publish the artifacts to Nexus after succesful build </p> -->
             <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">

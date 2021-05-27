@@ -4,7 +4,7 @@
   <groupId>com.vinaysdevopslab</groupId>
   <artifactId>VinayDevOpsLab</artifactId>
   <packaging>war</packaging>
-  <version>0.0.6</version>
+  <version>0.0.7</version>
   <name>VinayDevOpsLab</name>
   <url>http://maven.apache.org</url>
   <dependencies>

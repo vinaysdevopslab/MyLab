@@ -80,6 +80,8 @@ pipeline{
                 useWorkspaceInPromotion: false, 
                 verbose: false)
                 ])
+            }
+        }       
 
         // Stage 6 : Deploying to build Artifact to Docker
         stage('Deploy to Docker'){
@@ -98,11 +100,13 @@ pipeline{
                     )
                 ],             
                     
-                 usePromotionTimestamp: false, 
+                usePromotionTimestamp: false, 
                 useWorkspaceInPromotion: false, 
                 verbose: false)
                 ])
+
             }
+            
         }
     }     
 }

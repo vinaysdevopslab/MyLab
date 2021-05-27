@@ -60,7 +60,7 @@ pipeline{
                     echo "Name is '${Name}'"
                 }
         }
-        // Stage 5 : Deploying
+        // Stage 5 : Deploying build Artifact to Tomcat 
         stage('Deploy to Tomcat'){
             steps {
                 echo 'deploying-----------'
@@ -85,7 +85,7 @@ pipeline{
             }
         }       
 
-        // Stage 6 : Deploying to build Artifact to Docker
+        // Stage 6 : Deploying build Artifact to Docker
         stage('Deploy to Docker'){
             steps {
                 echo 'deploying-----------'
@@ -100,7 +100,7 @@ pipeline{
 
 
                     )
-                ],             
+                ],            
                     
                 usePromotionTimestamp: false, 
                 useWorkspaceInPromotion: false, 

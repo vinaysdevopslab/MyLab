@@ -54,7 +54,7 @@
         <h1>Hello</h1>
         <p>This is Syed's DevOps AWS Lab</p>
         <p><a class="btn btn-primary btn-lg" role="button">Learn more &raquo;</a></p>
-        <p><a class="btn btn-primary btn-lg" role="button">Successful!! &raquo;</a></p>
+        <p><a class="btn btn-primary btn-lg" role="button">Successfull!! &raquo;</a></p>
     </div>
 </div>
 

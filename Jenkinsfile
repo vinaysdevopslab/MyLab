@@ -95,7 +95,7 @@ pipeline{
                 transfers: [
                     sshTransfer(
                              cleanRemote:false,
-                             execCommand: 'ansible-playbook  /opt/playbooks/downloadanddeploy_docker.yaml -i /opt/playbooks/hosts',
+                             execCommand: 'ansible-playbook  /opt/playbooks/downloadanddeploy_docker.yaml_old -i /opt/playbooks/hosts',
 
                              execTimeout: 120000
 

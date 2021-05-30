@@ -28,7 +28,7 @@ pipeline{
         }
         
         // Stage3: Publish the source code for SonarQube
-        stage ('Sonarqube Analysis'){
+      /*  stage ('Sonarqube Analysis'){
             steps {
                 echo ' Sorce code published to Sonarqube for SCA...........'
                 withSonarQubeEnv('sonarqube') { // You can override the credential to be used
@@ -37,7 +37,7 @@ pipeline{
             }
         }
   //  }
-//}    
+} */   
         // Stage 4 :Publish artifact to Nexus 
         stage ('Publish to Nexus'){
             steps {

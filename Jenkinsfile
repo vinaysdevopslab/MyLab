@@ -36,9 +36,9 @@ pipeline{
                 }
             }
         }
-    }
-}    
-        /* Stage 4 :Publish artifact to Nexus 
+  //  }
+//}    
+        // Stage 4 :Publish artifact to Nexus 
         stage ('Publish to Nexus'){
             steps {
                 script {     
@@ -122,4 +122,4 @@ pipeline{
             
         }
     }     
-}*/
+}

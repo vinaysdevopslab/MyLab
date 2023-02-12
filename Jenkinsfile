@@ -30,8 +30,6 @@ pipeline{
         // Stage3 : Testing
         stage ('Publish to Nexus Repo'){
             steps {
-
-                script {
                 nexusArtifactUploader artifacts: 
                 [[artifactId: "${ArtifactId}", 
                 classifier: '',
@@ -44,7 +42,7 @@ pipeline{
                 protocol: 'http', 
                 repository: "${NexusRepo}", 
                 version: "${Version}"
-                }
+                
 
             }
         }

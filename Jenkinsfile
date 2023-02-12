@@ -4,7 +4,12 @@ pipeline{
     tools {
         maven 'maven'
     }
-
+    environment{
+       ArtifactId = readMavenPom().getArtifactId()
+       Version = readMavenPom().getVersion()
+       Name = readMavenPom().getName()
+       GroupId = readMavenPom().getGroupId()
+    }
     stages {
         // Specify various stage with in stages
 
@@ -25,7 +30,21 @@ pipeline{
         // Stage3 : Testing
         stage ('Publish to Nexus Repo'){
             steps {
-                nexusArtifactUploader artifacts: [[artifactId: 'VinayDevOpsLab', classifier: '', file: 'target/VinayDevOpsLab-0.0.9.war', type: 'war']], credentialsId: '724da07c-0a37-4345-9c29-ef853eda98e6', groupId: 'com.vinaysdevopslab', nexusUrl: '3.87.152.174:8081', nexusVersion: 'nexus3', protocol: 'http', repository: 'dev-proj-3', version: '0.0.9'
+
+                script {
+                nexusArtifactUploader artifacts: 
+                [[artifactId: "${ArtifactId}", 
+                classifier: '',
+                file: "target/${ArtifactId}-${Version}.war", 
+                type: 'war']],
+                credentialsId: '724da07c-0a37-4345-9c29-ef853eda98e6', 
+                groupId: "${GroupId}", 
+                nexusUrl: '3.87.152.174:8081', 
+                nexusVersion: 'nexus3', 
+                protocol: 'http', 
+                repository: "${NexusRepo}", 
+                version: "${Version}"
+                }
 
             }
         }

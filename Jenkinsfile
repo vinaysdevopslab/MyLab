@@ -40,7 +40,7 @@ pipeline{
                 nexusUrl: '3.87.152.174:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: "${NexusRepo}", 
+                repository: 'dev-proj-3', 
                 version: "${Version}"
                 
 

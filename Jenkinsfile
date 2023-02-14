@@ -30,6 +30,8 @@ pipeline{
         // Stage3 : Testing
         stage ('Publish to Nexus Repo'){
             steps {
+
+                script {
                 nexusArtifactUploader artifacts: 
                 [[artifactId: "${ArtifactId}", 
                 classifier: '',
@@ -37,12 +39,12 @@ pipeline{
                 type: 'war']],
                 credentialsId: '724da07c-0a37-4345-9c29-ef853eda98e6', 
                 groupId: "${GroupId}", 
-                nexusUrl: '3.87.152.174:8081', 
+                nexusUrl: '54.88.181.131:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: 'dev-proj-3-snapshot', 
+                repository: 'dev-proj', 
                 version: "${Version}"
-                
+                }
 
             }
         }

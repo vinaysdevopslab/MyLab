@@ -6,7 +6,7 @@ pipeline{
     }
 
     stages {
-        // Specify various stage with in stages
+        // Specify various stage with in stagesx
 
         // stage 1. Build
         stage ('Build'){
@@ -15,7 +15,7 @@ pipeline{
             }
         }
 
-        // Stage2 : Testing
+        // Stage2 : Testings
         stage ('Test'){
             steps {
                 echo ' testing......'
@@ -23,7 +23,7 @@ pipeline{
             }
         }
 
-        // Stage3 : Publish the source code to Sonarqube
+        // Stage3 : Publish the source code to Sonarqubes
         stage ('Sonarqube Analysis'){
             steps {
                 echo ' Source code published to Sonarqube for SCA......'
@@ -39,3 +39,8 @@ pipeline{
     }
 
 }
+
+
+
+
+

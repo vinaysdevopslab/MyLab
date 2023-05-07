@@ -18,7 +18,7 @@ pipeline{
         // Stage2 : Testings
         stage ('Test'){
             steps {
-                echo ' testing......'
+                echo ' testing....xdream.'
 
             }
         }

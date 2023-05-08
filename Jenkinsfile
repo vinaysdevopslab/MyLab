@@ -36,6 +36,11 @@ pipeline{
 
         stage('publish to nexus') {
              steps {
+
+                script { 
+
+                  def NexusRepo = Version.endsWith("SNAPSHOT") ? "tarisdream4k-SNAPSHOT" : "tarisdream8k-RELEASE"
+
                 nexusArtifactUploader artifacts: 
                 [[artifactId: "${ArtifactId}", 
                 classifier: '', 
@@ -44,8 +49,10 @@ pipeline{
                 groupId: "${GroupId}", nexusUrl: '172.20.10.121:8081', 
                 nexusVersion: 'nexus3', 
                 protocol: 'http', 
-                repository: 'tarisdream4k-SNAPSHOT', 
+                repository: "${NexusRepo}", 
                 version: "${Version}"
+
+                  }
              }
         }
 

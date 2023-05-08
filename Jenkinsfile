@@ -5,9 +5,7 @@ pipeline{
         maven 'maven'
     }
 
-environment{
 
-}
 
     stages {
         // Specify various stage with in stagesx

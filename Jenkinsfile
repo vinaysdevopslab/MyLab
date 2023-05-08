@@ -5,6 +5,10 @@ pipeline{
         maven 'maven'
     }
 
+environment{
+
+}
+
     stages {
         // Specify various stage with in stagesx
 
@@ -18,7 +22,7 @@ pipeline{
         // Stage2 : Testings
         stage ('Test'){
             steps {
-                echo ' testing....xdream.'
+                echo ' testing...20k.xdream.'
 
             }
         }

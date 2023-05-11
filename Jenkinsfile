@@ -74,7 +74,26 @@ pipeline{
                // withSonarQubeEnv('sonarqube'){ // You can override the credential to be used
                     // sh 'mvn sonar:sonar'
                 
+       // stage 5 : Deploying
 
+       stage ('Deploy') {
+        step{
+            echo "deploying"
+            sshPublisher(publishers: 
+            [sshPublisherDesc(configName: 'ansible-control-node', 
+            transfers: [sshTransfer
+            (cleanRemote: false, 
+            excludes: '', execCommand: '/opt/playbooks/ansible-playbook downloadanddeploy.yml -i hosts', 
+            execTimeout: 120000, flatten: false, 
+            makeEmptyDirs: false, noDefaultExcludes: false, 
+            patternSeparator: '[, ]+', remoteDirectory: '', 
+            remoteDirectorySDF: false, removePrefix: '', 
+            sourceFiles: '')], usePromotionTimestamp: false, 
+            useWorkspaceInPromotion: false,
+             verbose: false)])
+
+        }
+       }
             
         
 

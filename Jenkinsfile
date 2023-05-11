@@ -76,7 +76,7 @@ pipeline{
                 
        // stage 5 : Deploying
 
-       stage ('Deploy') {
+       /*stage ('Deploy') {
         step{
             echo "deploying"
             sshPublisher(publishers: 
@@ -90,7 +90,7 @@ pipeline{
             remoteDirectorySDF: false, removePrefix: '', 
             sourceFiles: '')], usePromotionTimestamp: false, 
             useWorkspaceInPromotion: false,
-             verbose: false)])
+             verbose: false)]) //
 
         }
        }

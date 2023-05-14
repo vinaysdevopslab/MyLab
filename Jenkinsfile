@@ -60,26 +60,26 @@ pipeline {
         }
 
         // Stage5: Deploying
-        stage ('Deploy') {
+        stage('Deploy') {
             steps {
-                echo "deploying"
+                echo 'deploying'
                 sshPublisher(publishers: [
-                    sshPublisherDesc(configName: 'ansible-control-node', 
+                    sshPublisherDesc(configName: 'ansible-control-node',
                         transfers: [sshTransfer(
-                            cleanRemote: false, 
-                            excludes: '', 
-                            execCommand: '/opt/playbooks/ansible-playbook downloadanddeploy.yml -i hosts', 
-                            execTimeout: 120000, 
-                            flatten: false, 
-                            makeEmptyDirs: false, 
-                            noDefaultExcludes: false, 
-                            patternSeparator: '[, ]+', 
-                            remoteDirectory: '', 
-                            remoteDirectorySDF: false, 
-                            removePrefix: '', 
+                            cleanRemote: false,
+                            excludes: '',
+                            execCommand: 'ansible-playbook /opt/playbooks/ downloadanddeploy.yml -i /opt/playbooks/hosts',
+                            execTimeout: 120000,
+                            flatten: false,
+                            makeEmptyDirs: false,
+                            noDefaultExcludes: false,
+                            patternSeparator: '[, ]+',
+                            remoteDirectory: '',
+                            remoteDirectorySDF: false,
+                            removePrefix: '',
                             sourceFiles: ''
                         )]
-                    , usePromotionTimestamp: false, 
+                    , usePromotionTimestamp: false,
                     useWorkspaceInPromotion: false,
                     verbose: false)
                 ])
@@ -87,3 +87,30 @@ pipeline {
         }
     }
 }
+        // Stage5: Deploying the build artifacts to docker
+        stage('Deploy to docker') {
+            steps {
+                echo 'deploying'
+                sshPublisher(publishers: [
+                    sshPublisherDesc(configName: 'ansible-control-node',
+                        transfers: [sshTransfer(
+                            cleanRemote: false,
+                            excludes: '',
+                            /* groovylint-disable-next-line LineLength */
+                            execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy-docker-user.yml -i /opt/playbooks/hosts',
+                            execTimeout: 120000,
+                            flatten: false,
+                            makeEmptyDirs: false,
+                            noDefaultExcludes: false,
+                            patternSeparator: '[, ]+',
+                            remoteDirectory: '',
+                            remoteDirectorySDF: false,
+                            removePrefix: '',
+                            sourceFiles: ''
+                        )]
+                    , usePromotionTimestamp: false,
+                    useWorkspaceInPromotion: false,
+                    verbose: false)
+                ])
+            }
+        }

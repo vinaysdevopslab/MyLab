@@ -85,9 +85,8 @@ pipeline {
                 ])
             }
         }
-    }
-}
-        // Stage5: Deploying the build artifacts to docker
+
+        // Stage6: Deploying the build artifacts to docker
         stage('Deploy to docker') {
             steps {
                 echo 'deploying'
@@ -103,7 +102,8 @@ pipeline {
                             makeEmptyDirs: false,
                             noDefaultExcludes: false,
                             patternSeparator: '[, ]+',
-                            remoteDirectory: '',
+                            remoteDirectory
+                            '',
                             remoteDirectorySDF: false,
                             removePrefix: '',
                             sourceFiles: ''
@@ -114,3 +114,5 @@ pipeline {
                 ])
             }
         }
+    }
+}

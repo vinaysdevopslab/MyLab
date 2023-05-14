@@ -98,7 +98,7 @@ pipeline {
                             excludes: '',
                             /* groovylint-disable-next-line LineLength */
                             execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy-docker-user.yml -i /opt/playbooks/hosts',
-                            execTimeout: 120000,
+                            execTimeout: 190000,
                             flatten: false,
                             makeEmptyDirs: false,
                             noDefaultExcludes: false,

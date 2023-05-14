@@ -68,7 +68,7 @@ pipeline {
                         transfers: [sshTransfer(
                             cleanRemote: false,
                             excludes: '',
-                            execCommand: ' /opt/playbooks/ansible-playbook downloadanddeploy.yml -i /opt/playbooks/hosts',
+                            execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy.yml -i /opt/playbooks/hosts',
                             execTimeout: 120000,
                             flatten: false,
                             makeEmptyDirs: false,
@@ -97,7 +97,7 @@ pipeline {
                             cleanRemote: false,
                             excludes: '',
                             /* groovylint-disable-next-line LineLength */
-                            execCommand: '/opt/playbooks/ansible-playbook downloadanddeploy-docker-user.yml -i /opt/playbooks/hosts',
+                            execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy-docker-user.yml -i /opt/playbooks/hosts',
                             execTimeout: 120000,
                             flatten: false,
                             makeEmptyDirs: false,

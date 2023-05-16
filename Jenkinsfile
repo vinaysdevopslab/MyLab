@@ -29,7 +29,7 @@ pipeline {
             }
         }
 
-        Stage3 : Publish the source code to Sonarqube
+        //Stage3 : Publish the source code to Sonarqube
         stage ('Sonarqube Analysis'){
             steps {
                 echo ' Source code published to Sonarqube for SCA......'

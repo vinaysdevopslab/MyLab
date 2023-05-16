@@ -4,7 +4,7 @@ pipeline {
     tools {
         maven 'maven'
     }
-
+}
     environment {
         ArtifactId = readMavenPom().getArtifactId()
         Version    = readMavenPom().getVersion()
@@ -21,7 +21,7 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-
+    }
         // Stage2 : Testing
         stage('Test') {
             steps {
@@ -41,9 +41,8 @@ pipeline {
                  if (qg.status != 'OK') {
                       error "Pipeline aborted due to quality gate failure: ${qg.status}"
 
-            }
-        }
-
+                 }
+                }
 
         // Stage3: Publish the artifacts to nexus
         stage('publish to nexus') {
@@ -129,5 +128,5 @@ pipeline {
                 ])
             }
         }
-    }
-}
+            }
+        }

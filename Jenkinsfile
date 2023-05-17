@@ -1,5 +1,4 @@
 pipeline {
-    //Directives
     agent any
     tools {
         maven 'maven'
@@ -9,45 +8,37 @@ pipeline {
         ArtifactId = readMavenPom().getArtifactId()
         Version    = readMavenPom().getVersion()
         Name       = readMavenPom().getName()
-        GroupId     = readMavenPom().getGroupId()
+        GroupId    = readMavenPom().getGroupId()
     }
 
     stages {
-        // Specify various stages
-
-        // Stage 1. Build
         stage('Build') {
             steps {
                 sh 'mvn clean install'
             }
         }
-    
-        // Stage2 : Testing
+
         stage('Test') {
             steps {
                 echo ' testing...20k.xdream.'
             }
         }
-    }
-  
-                           //Stage3 : Publish the source code to Sonarqube
+
         stage('Sonarqube Analysis') {
             steps {
                 echo ' Source code published to Sonarqube for SCA......'
-                withSonarQubeEnv('sonarqube') { // You can override the credential to be used
-            sh 'mvn sonar:sonar'
+                withSonarQubeEnv('sonarqube') {
+                    sh 'mvn sonar:sonar'
                 }
                 timeout(time: 1, unit: 'HOURS') {
-            def qg = waitForQualityGate()
-            if (qg.status != 'OK') {
-                error "Pipeline aborted due to quality gate failure: ${qg.status}"
-
-    }
-        }
+                    def qg = waitForQualityGate()
+                    if (qg.status != 'OK') {
+                        error "Pipeline aborted due to quality gate failure: ${qg.status}"
+                    }
+                }
             }
+        }
 
-
-                      // Stage3: Publish the artifacts to nexus
         stage('publish to nexus') {
             steps {
                 script {
@@ -67,7 +58,6 @@ pipeline {
             }
         }
 
-        // Stage4: Print environmental variables
         stage('print environmental variables') {
             steps {
                 echo "artifact id is '${ArtifactId}'"
@@ -76,8 +66,7 @@ pipeline {
                 echo "the name is '${Name}'"
             }
         }
-               } 
-        // Stage5: Deploying
+
         stage('Deploy') {
             steps {
                 echo 'deploying'
@@ -104,7 +93,6 @@ pipeline {
             }
         }
 
-        // Stage6: Deploying the build artifacts to docker
         stage('Deploy to docker') {
             steps {
                 echo 'deploying'
@@ -113,7 +101,6 @@ pipeline {
                         transfers: [sshTransfer(
                             cleanRemote: false,
                             excludes: '',
-                            /* groovylint-disable-next-line LineLength */
                             execCommand: 'ansible-playbook /opt/playbooks/downloadanddeploy-docker-NEW-STYLE.yml -i /opt/playbooks/hosts',
                             execTimeout: 190000,
                             flatten: false,
@@ -131,5 +118,5 @@ pipeline {
                 ])
             }
         }
-   }
-
+    } // This is where the stages block ends
+} // This is where the pipeline block ends

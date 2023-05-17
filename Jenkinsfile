@@ -30,18 +30,17 @@ pipeline {
         }
 
         //Stage3 : Publish the source code to Sonarqube
-        stage ('Sonarqube Analysis'){
+        stage('Sonarqube Analysis') {
             steps {
                 echo ' Source code published to Sonarqube for SCA......'
-                withSonarQubeEnv('sonarqube'){ // You can override the credential to be used
-                     sh 'mvn sonar:sonar'
+                withSonarQubeEnv('sonarqube') { // You can override the credential to be used
+            sh 'mvn sonar:sonar'
                 }
                 timeout(time: 1, unit: 'HOURS') {
-                 def qg = waitForQualityGate()
-                 if (qg.status != 'OK') {
-                      error "Pipeline aborted due to quality gate failure: ${qg.status}"
-
-                 }
+            def qg = waitForQualityGate()
+            if (qg.status != 'OK') {
+                error "Pipeline aborted due to quality gate failure: ${qg.status}"
+            }
                 }
 
         // Stage3: Publish the artifacts to nexus

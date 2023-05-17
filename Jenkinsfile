@@ -4,7 +4,7 @@ pipeline {
     tools {
         maven 'maven'
     }
-}
+
     environment {
         ArtifactId = readMavenPom().getArtifactId()
         Version    = readMavenPom().getVersion()
@@ -21,15 +21,16 @@ pipeline {
                 sh 'mvn clean install'
             }
         }
-    }
+    
         // Stage2 : Testing
         stage('Test') {
             steps {
                 echo ' testing...20k.xdream.'
             }
         }
-
-        //Stage3 : Publish the source code to Sonarqube
+    }
+  
+                           //Stage3 : Publish the source code to Sonarqube
         stage('Sonarqube Analysis') {
             steps {
                 echo ' Source code published to Sonarqube for SCA......'
@@ -40,10 +41,13 @@ pipeline {
             def qg = waitForQualityGate()
             if (qg.status != 'OK') {
                 error "Pipeline aborted due to quality gate failure: ${qg.status}"
-            }
-                }
 
-        // Stage3: Publish the artifacts to nexus
+    }
+        }
+            }
+
+
+                      // Stage3: Publish the artifacts to nexus
         stage('publish to nexus') {
             steps {
                 script {
@@ -66,13 +70,13 @@ pipeline {
         // Stage4: Print environmental variables
         stage('print environmental variables') {
             steps {
-                echo "artifact id is  '${ArtifactId}'"
+                echo "artifact id is '${ArtifactId}'"
                 echo "version is '${Version}'"
                 echo "group Id is '${GroupId}'"
                 echo "the name is '${Name}'"
             }
         }
-
+               } 
         // Stage5: Deploying
         stage('Deploy') {
             steps {
@@ -127,5 +131,5 @@ pipeline {
                 ])
             }
         }
-            }
-        }
+   }
+
